@@ -4,14 +4,18 @@
     y genera el manifest js/imagenes.js.
 
 .DESCRIPTION
-    Para cada personaje abre su página en jujutsu-kaisen.fandom.com, toma la
-    imagen principal (etiqueta og:image) y la guarda en assets/personajes/
-    con el nombre <id>.<ext>. Al final reescribe js/imagenes.js para que el
-    sitio use esas fotos automáticamente.
+    Usa la API de MediaWiki de jujutsu-kaisen.fandom.com (no el HTML, que está
+    protegido por Cloudflare):
 
-    Uso académico y sin fines de lucro. Las imágenes pertenecen a sus autores
-    y titulares de derechos (Gege Akutami, Shueisha, MAPPA). Si el titular lo
-    solicita, deben retirarse.
+      1. prop=pageimages  -> nombre del archivo principal de la página
+      2. prop=imageinfo   -> URL de una miniatura de 700 px
+      3. descarga la miniatura enviando el Referer del wiki
+
+    Guarda cada foto en assets/personajes/<id>.<ext> y reescribe js/imagenes.js.
+
+    Uso académico y sin fines de lucro. Las imágenes pertenecen a sus autores y
+    titulares de derechos (Gege Akutami, Shueisha, MAPPA); deben retirarse si
+    el titular lo solicita.
 
 .EXAMPLE
     .\tools\descargar-imagenes.ps1
@@ -22,14 +26,19 @@
 
 [CmdletBinding()]
 param(
-    [switch]$Forzar
+    [switch]$Forzar,
+    [int]$Ancho = 700
 )
 
 $ErrorActionPreference = "Stop"
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Add-Type -AssemblyName System.Net.Http
 
-$raiz    = Split-Path -Parent $PSScriptRoot
-$destino = Join-Path $raiz "assets\personajes"
+$raiz     = Split-Path -Parent $PSScriptRoot
+$destino  = Join-Path $raiz "assets\personajes"
 $manifest = Join-Path $raiz "js\imagenes.js"
+$api      = "https://jujutsu-kaisen.fandom.com/api.php"
+$referer  = "https://jujutsu-kaisen.fandom.com/"
 
 New-Item -ItemType Directory -Force -Path $destino | Out-Null
 
@@ -54,20 +63,20 @@ $personajes = @(
     @{ id = "kenjaku"; pagina = "Kenjaku" }
 )
 
-$agente = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-
-Add-Type -AssemblyName System.Net.Http
 $cliente = [System.Net.Http.HttpClient]::new()
-$cliente.Timeout = [TimeSpan]::FromSeconds(60)
-$cliente.DefaultRequestHeaders.Add("User-Agent", $agente)
+$cliente.Timeout = [TimeSpan]::FromSeconds(45)
+$cliente.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
+
+function Get-Json([string]$url) {
+    $texto = $cliente.GetStringAsync($url).GetAwaiter().GetResult()
+    return $texto | ConvertFrom-Json
+}
 
 function Get-Extension([byte[]]$bytes) {
     if ($bytes.Length -lt 12) { return "jpg" }
     if ($bytes[0] -eq 0x89 -and $bytes[1] -eq 0x50 -and $bytes[2] -eq 0x4E -and $bytes[3] -eq 0x47) { return "png" }
     if ($bytes[0] -eq 0xFF -and $bytes[1] -eq 0xD8) { return "jpg" }
     if ($bytes[0] -eq 0x52 -and $bytes[1] -eq 0x49 -and $bytes[2] -eq 0x46 -and $bytes[3] -eq 0x46) { return "webp" }
-    $marca = [System.Text.Encoding]::ASCII.GetString($bytes, 4, 8)
-    if ($marca -like "ftypavi*") { return "avif" }
     return "jpg"
 }
 
@@ -86,50 +95,62 @@ foreach ($p in $personajes) {
     if ($existente -and -not $Forzar) {
         $entradas[$id] = "assets/personajes/$($existente.Name)"
         $reutilizadas++
-        Write-Host ("  = {0} (ya existía: {1})" -f $id, $existente.Name) -ForegroundColor DarkGray
+        Write-Host ("  = {0,-8} ya existía: {1}" -f $id, $existente.Name) -ForegroundColor DarkGray
         continue
     }
 
-    $pagina = "https://jujutsu-kaisen.fandom.com/wiki/$($p.pagina)"
     $urlImagen = $null
 
-    for ($intento = 1; $intento -le 3 -and -not $urlImagen; $intento++) {
-        try {
-            $html = $cliente.GetStringAsync($pagina).GetAwaiter().GetResult()
-            $m = [regex]::Match($html, '<meta property="og:image" content="([^"]+)"')
-            if ($m.Success) { $urlImagen = $m.Groups[1].Value }
+    try {
+        # 1) Nombre del archivo principal de la página
+        $consulta = "$api" + "?action=query&prop=pageimages&piprop=name&redirects=1&format=json&formatversion=2&titles=" + [uri]::EscapeDataString($p.pagina)
+        $datos = Get-Json $consulta
+        $nombreArchivo = $datos.query.pages[0].pageimage
+
+        if ($nombreArchivo) {
+            # 2) Miniatura de 700 px generada por la API
+            $consulta2 = "$api" + "?action=query&prop=imageinfo&iiprop=url&format=json&formatversion=2&iiurlwidth=$Ancho&titles=" + [uri]::EscapeDataString("File:$nombreArchivo")
+            $datos2 = Get-Json $consulta2
+            $urlImagen = $datos2.query.pages[0].imageinfo[0].thumburl
         }
-        catch {
-            Start-Sleep -Seconds (2 * $intento)
-        }
+    }
+    catch {
+        $e = $_.Exception
+        while ($e.InnerException) { $e = $e.InnerException }
+        Write-Warning ("  ! {0}: {1}" -f $id, $e.Message)
     }
 
     if (-not $urlImagen) {
         $fallidas += $id
-        Write-Warning ("  ! {0}: no se encontró la imagen principal" -f $id)
+        if ($nombreArchivo -eq $null) { Write-Warning ("  ! {0}: la página no tiene imagen principal" -f $id) }
         continue
     }
 
     try {
-        $bytes = $cliente.GetByteArrayAsync($urlImagen).GetAwaiter().GetResult()
+        $req = [System.Net.Http.HttpRequestMessage]::new([System.Net.Http.HttpMethod]::Get, $urlImagen)
+        $req.Headers.Add("Referer", $referer)
+        $req.Headers.Add("Accept", "image/avif,image/webp,image/png,image/*;q=0.8")
+        $resp = $cliente.SendAsync($req).GetAwaiter().GetResult()
+        $resp.EnsureSuccessStatusCode() | Out-Null
+        $bytes = $resp.Content.ReadAsByteArrayAsync().GetAwaiter().GetResult()
+
         $ext = Get-Extension $bytes
         $archivo = Join-Path $destino "$id.$ext"
-
         if ($existente -and $existente.FullName -ne $archivo) {
             Remove-Item $existente.FullName -Force -ErrorAction SilentlyContinue
         }
-
         [System.IO.File]::WriteAllBytes($archivo, $bytes)
+
         $entradas[$id] = "assets/personajes/$id.$ext"
         $descargadas++
-        Write-Host ("  OK {0,-8} {1,5} KB  ({2})" -f $id, [math]::Round($bytes.Length / 1kb), $ext) -ForegroundColor Green
+        Write-Host ("  OK {0,-8} {1,4} KB  {2}" -f $id, [math]::Round($bytes.Length / 1kb), $ext) -ForegroundColor Green
     }
     catch {
         $fallidas += $id
         Write-Warning ("  ! {0}: error al descargar la imagen" -f $id)
     }
 
-    Start-Sleep -Milliseconds 800
+    Start-Sleep -Milliseconds 600
 }
 
 # --- Manifest ---

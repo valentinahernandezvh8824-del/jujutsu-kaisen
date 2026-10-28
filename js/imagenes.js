@@ -1,12 +1,21 @@
-/* ============================================================
-   Manifest de fotos de personajes
-   ------------------------------------------------------------
-   Este archivo lo genera tools/descargar-imagenes.ps1.
-   Si aún no lo has ejecutado, el sitio muestra un marcador con
-   el kanji del personaje en lugar de la foto.
-
-   También puedes agregar entradas a mano:
-     const IMAGENES = { gojo: "assets/personajes/gojo.jpg" };
-   ============================================================ */
-
-const IMAGENES = {};
+/* Archivo generado por tools/descargar-imagenes.ps1. No editar a mano. */
+const IMAGENES = {
+  yuji: "assets/personajes/yuji.webp",
+  megumi: "assets/personajes/megumi.webp",
+  nobara: "assets/personajes/nobara.webp",
+  gojo: "assets/personajes/gojo.webp",
+  maki: "assets/personajes/maki.webp",
+  inumaki: "assets/personajes/inumaki.webp",
+  panda: "assets/personajes/panda.webp",
+  yuta: "assets/personajes/yuta.webp",
+  nanami: "assets/personajes/nanami.webp",
+  geto: "assets/personajes/geto.webp",
+  sukuna: "assets/personajes/sukuna.webp",
+  mahito: "assets/personajes/mahito.webp",
+  choso: "assets/personajes/choso.webp",
+  toji: "assets/personajes/toji.webp",
+  todo: "assets/personajes/todo.webp",
+  miwa: "assets/personajes/miwa.webp",
+  yuki: "assets/personajes/yuki.webp",
+  kenjaku: "assets/personajes/kenjaku.webp",
+};
