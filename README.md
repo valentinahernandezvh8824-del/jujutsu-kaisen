@@ -1,12 +1,14 @@
 # Jujutsu Kaisen — Wiki de Hechiceros 呪
 
-[![Sitio en vivo](https://img.shields.io/badge/sitio-en%20vivo-b026ff?style=flat-square)](https://valentinahernandezvh8824-del.github.io/jujutsu-kaisen/)
-[![Licencia MIT](https://img.shields.io/badge/licencia-MIT-22d3ee?style=flat-square)](LICENSE)
+[![Sitio en vivo](https://img.shields.io/badge/sitio-en%20vivo-31c0cc?style=flat-square)](https://valentinahernandezvh8824-del.github.io/jujutsu-kaisen/)
+[![Licencia MIT](https://img.shields.io/badge/licencia-MIT-7b2cff?style=flat-square)](LICENSE)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](index.html)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](css/style.css)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](js/app.js)
 
 Aplicativo web estático que funciona como una **wiki interactiva de Jujutsu Kaisen**: 28 personajes, sus técnicas malditas, grados, clanes y expansiones de dominio, con buscador, filtros, ordenamiento y fichas detalladas. Incluye una página aparte de **habilidades** a la que se llega desde la ficha de cada personaje.
+
+La estética toma como referencia la *landing page* oficial de **Jujutsu Kaisen: Cursed Clash**: negro cinematográfico, cian eléctrico, tipografía display en mayúsculas, arte a sangre y microanimaciones.
 
 > Proyecto fan, sin fines comerciales y sin afiliación con Gege Akutami, Shueisha o MAPPA.
 
@@ -26,18 +28,21 @@ También puedes abrirla en local con doble clic en `index.html` (no necesita ser
 - **28 personajes** de la obra, agrupados por escuela (Tokio, Kioto), independientes, antagonistas y espíritus malditos.
 - **Página de habilidades** (`habilidades.html`) con las 125 técnicas y dominios del archivo, buscables y filtrables por tipo y por hechicero.
 - **Enlaces cruzados**: cada técnica de una ficha lleva a su tarjeta en habilidades, y desde ahí se vuelve al personaje con `index.html#p-<id>` (abre la ficha directamente).
-- **Animaciones**: aparición al hacer scroll, barra de progreso de lectura, contadores ascendentes, brillo en el título, realce de la habilidad enlazada y respeto a `prefers-reduced-motion`.
-- **Fotos de los personajes** con carga diferida y marcador automático (kanji + color) mientras no haya imagen.
+- **Hero cinematográfico** con muro de 8 personajes, efecto *ken burns*, parallax con el scroll y el puntero, rejilla y degradados de energía maldita.
+- **Cabecera fija** que se compacta y se vuelve translúcida al bajar, con barra de progreso de lectura.
+- **Banda animada** (*ticker*) con conceptos del universo, que se pausa al pasar el cursor.
+- **Animaciones**: entrada escalonada del titular, revelado al hacer scroll con desenfoque, halo que sigue al cursor, brillo del título, realce de la habilidad enlazada, contadores ascendentes y respeto a `prefers-reduced-motion`.
+- **Fotos de los personajes** en WebP con carga diferida, respaldo de color por personaje y marcador automático (kanji + color) si no hay imagen.
 - **Todas las técnicas a la vista** en cada tarjeta, incluida la expansión de dominio, sin abrir la ficha.
 - **Buscador instantáneo** que ignora tildes y mayúsculas, y busca en nombre, kanji, clan, epíteto, descripción, técnicas y dominio.
 - **Filtros por afiliación y por grado** (Grado Especial, Grado 1–4, Espíritu Maldito).
 - **Ordenamiento** por relevancia, nombre, poder total o grado.
-- **Ficha de personaje** en modal: descripción, lista de técnicas, expansión de dominio y barras de estadísticas animadas.
+- **Ficha de personaje** en modal: descripción, lista de técnicas enlazada, expansión de dominio y barras de estadísticas animadas.
 - **Tema oscuro / claro** con detección automática del sistema y preferencia guardada en `localStorage`.
 - **Botón "Aleatorio"** para descubrir un hechicero al azar.
-- **Diseño responsive** con tarjetas, auras de energía maldita y animaciones suaves.
+- **Diseño responsive** verificado de 390 px a 1920 px, con tarjetas tipo *roster*, numeración correlativa y pie con tipografía de contorno.
 - **Accesibilidad**: navegación con teclado, foco atrapado dentro del modal, cierre con `Esc`, etiquetas ARIA y respeto a `prefers-reduced-motion`.
-- **Cero dependencias**: HTML, CSS y JavaScript puro. Funciona sin conexión.
+- **Cero dependencias**: HTML, CSS y JavaScript puro. Solo las tipografías vienen de Google Fonts.
 
 ---
 
@@ -52,11 +57,11 @@ jujutsu-kaisen/
 ├── js/
 │   ├── data.js             # Personajes, técnicas y estadísticas
 │   ├── imagenes.js         # Manifest de fotos (lo genera el script)
-│   ├── ui.js               # Tema, animaciones de scroll y progreso
+│   ├── ui.js               # Tema, reveal, progreso, cabecera, parallax y halo
 │   ├── app.js              # Búsqueda, filtros, modal y eventos
 │   └── habilidades.js      # Listado y filtros de habilidades
 ├── assets/
-│   └── personajes/         # Fotos <id>.jpg / .png / .webp
+│   └── personajes/         # Retratos <id>.webp
 ├── tools/
 │   ├── descargar-imagenes.ps1
 │   └── servidor.js         # Servidor local sin dependencias
@@ -138,8 +143,9 @@ const IMAGENES = {
 | Tecnología | Uso |
 | --- | --- |
 | HTML5 | Estructura semántica y accesible |
-| CSS3 | Variables, `grid`, `color-mix`, animaciones y modo claro/oscuro |
-| JavaScript (ES6+) | Render dinámico, filtros, modal y persistencia del tema |
+| CSS3 | Variables, `grid`, `color-mix`, `clip-path`, animaciones y modo claro/oscuro |
+| JavaScript (ES6+) | Render dinámico, filtros, modal, parallax y persistencia del tema |
+| Google Fonts | Anton (display) e Inter (texto) |
 | GitHub Pages | Publicación del sitio |
 
 Sin frameworks, sin build, sin `npm install`.

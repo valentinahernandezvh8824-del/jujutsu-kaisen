@@ -78,15 +78,123 @@
     window.addEventListener("resize", actualizar);
   }
 
+  // Cabecera: se vuelve sólida al bajar
+  function cabeceraScroll() {
+    const cabecera = $(".site-header");
+    if (!cabecera) return;
+
+    let pendiente = false;
+    const actualizar = () => {
+      pendiente = false;
+      cabecera.classList.toggle("is-scrolled", window.scrollY > 24);
+    };
+
+    actualizar();
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (pendiente) return;
+        pendiente = true;
+        requestAnimationFrame(actualizar);
+      },
+      { passive: true }
+    );
+  }
+
+  // Parallax del arte del hero: scroll + puntero
+  function parallaxHero() {
+    const hero = $(".hero");
+    const arte = $(".hero-art");
+    if (!hero || !arte) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let pendiente = false;
+    const desplazar = () => {
+      pendiente = false;
+      const alto = hero.offsetHeight || 1;
+      const avance = Math.min(window.scrollY, alto);
+      arte.style.setProperty("--shift", `${(avance * 0.14).toFixed(1)}px`);
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (pendiente) return;
+        pendiente = true;
+        requestAnimationFrame(desplazar);
+      },
+      { passive: true }
+    );
+
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+
+    hero.addEventListener(
+      "pointermove",
+      (e) => {
+        const caja = hero.getBoundingClientRect();
+        const x = (e.clientX - caja.left) / caja.width - 0.5;
+        const y = (e.clientY - caja.top) / caja.height - 0.5;
+        arte.style.setProperty("--px", `${(x * 26).toFixed(1)}px`);
+        arte.style.setProperty("--py", `${(y * 18).toFixed(1)}px`);
+      },
+      { passive: true }
+    );
+
+    hero.addEventListener("pointerleave", () => {
+      arte.style.setProperty("--px", "0px");
+      arte.style.setProperty("--py", "0px");
+    });
+  }
+
+  // Halo que sigue al cursor (solo escritorio)
+  function brilloCursor() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+
+    const halo = document.createElement("div");
+    halo.className = "cursor-glow";
+    halo.setAttribute("aria-hidden", "true");
+    document.body.appendChild(halo);
+
+    let destinoX = window.innerWidth / 2;
+    let destinoY = window.innerHeight * 0.3;
+    let x = destinoX;
+    let y = destinoY;
+
+    const pintar = () => {
+      x += (destinoX - x) * 0.1;
+      y += (destinoY - y) * 0.1;
+      halo.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
+      requestAnimationFrame(pintar);
+    };
+
+    window.addEventListener(
+      "pointermove",
+      (e) => {
+        destinoX = e.clientX;
+        destinoY = e.clientY;
+      },
+      { passive: true }
+    );
+
+    pintar();
+  }
+
   window.UI = {
     iniciarTema,
     aplicarTema,
     observarRevelados,
     barraProgreso,
+    cabeceraScroll,
+    parallaxHero,
+    brilloCursor,
     iniciar() {
       iniciarTema();
       observarRevelados();
       barraProgreso();
+      cabeceraScroll();
+      parallaxHero();
+      brilloCursor();
     }
   };
 })();

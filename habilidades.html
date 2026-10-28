@@ -6,6 +6,9 @@
   <title>Habilidades — Jujutsu Kaisen</title>
   <meta name="description" content="Archivo de técnicas malditas y expansiones de dominio de Jujutsu Kaisen, con filtros por tipo y por hechicero." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%81%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -15,11 +18,11 @@
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="index.html">
+      <a class="brand" href="index.html" aria-label="Jujutsu Kaisen, ir al inicio">
         <span class="brand-mark" aria-hidden="true">呪</span>
         <span class="brand-text">
           <strong>Jujutsu Kaisen</strong>
-          <small>Wiki de hechiceros</small>
+          <small>Fan archive</small>
         </span>
       </a>
 
@@ -29,6 +32,7 @@
       </nav>
 
       <div class="header-actions">
+        <a class="btn-head" href="index.html">Fichas de personajes</a>
         <button class="btn-ghost" id="btn-theme" type="button" aria-label="Cambiar tema" title="Cambiar tema">
           <span id="theme-icon" aria-hidden="true">☾</span>
         </button>
@@ -37,18 +41,82 @@
   </header>
 
   <main id="top">
-    <section class="hero wrap reveal">
-      <p class="hero-kicker">Archivo de jujutsu</p>
-      <h1 class="hero-title">Técnicas <span class="gradient">malditas</span></h1>
-      <p class="hero-copy">
-        Todas las técnicas y expansiones de dominio del archivo, en un solo lugar.
-        Toca una habilidad para volver a la ficha del hechicero que la usa.
+    <section class="hero hero--skills" id="inicio">
+      <div class="hero-art" aria-hidden="true">
+        <img class="hero-art-img" src="assets/personajes/megumi.webp" alt="" />
+        <img class="hero-art-img" src="assets/personajes/nobara.webp" alt="" />
+        <img class="hero-art-img" src="assets/personajes/yuta.webp" alt="" />
+        <img class="hero-art-img" src="assets/personajes/toji.webp" alt="" />
+        <img class="hero-art-img" src="assets/personajes/gojo.webp" alt="" />
+        <img class="hero-art-img" src="assets/personajes/sukuna.webp" alt="" />
+        <img class="hero-art-img" src="assets/personajes/mahito.webp" alt="" />
+        <img class="hero-art-img" src="assets/personajes/yuji.webp" alt="" />
+      </div>
+      <div class="hero-veil" aria-hidden="true"></div>
+      <span class="hero-grid" aria-hidden="true"></span>
+
+      <div class="wrap hero-inner">
+        <p class="hero-kicker">
+          <span class="kicker-dot" aria-hidden="true"></span>
+          Archivo de jujutsu
+        </p>
+
+        <h1 class="hero-title">
+          <span class="line">Técnicas</span>
+          <span class="line accent">malditas</span>
+          <span class="line line-sm">116 técnicas · 9 dominios · 28 hechiceros</span>
+        </h1>
+
+        <p class="hero-copy">
+          Todas las técnicas y expansiones de dominio del archivo, en un solo lugar.
+          Toca una habilidad para volver a la ficha del hechicero que la usa.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#archivo">Explorar el archivo <span aria-hidden="true">→</span></a>
+          <a class="btn btn-outline" href="index.html">Volver a personajes</a>
+        </div>
+
+        <dl class="hero-stats">
+          <div><dt id="stat-tecnicas">0</dt><dd>Técnicas</dd></div>
+          <div><dt id="stat-dominios">0</dt><dd>Dominios</dd></div>
+          <div><dt id="stat-autores">0</dt><dd>Hechiceros</dd></div>
+        </dl>
+      </div>
+
+      <a class="hero-scroll" href="#archivo" aria-label="Bajar al archivo">
+        <span>Desliza</span>
+        <i aria-hidden="true"></i>
+      </a>
+      <p class="hero-rail" aria-hidden="true">呪術廻戦 — Cursed technique archive — 2026</p>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-group">
+          <span>Energía maldita</span><b>✦</b>
+          <span>Expansión de dominio</span><b>✦</b>
+          <span>Técnica inversa</span><b>✦</b>
+          <span>Dominio simple</span><b>✦</b>
+          <span>Técnica máxima</span><b>✦</b>
+        </div>
+        <div class="ticker-group">
+          <span>Energía maldita</span><b>✦</b>
+          <span>Expansión de dominio</span><b>✦</b>
+          <span>Técnica inversa</span><b>✦</b>
+          <span>Dominio simple</span><b>✦</b>
+          <span>Técnica máxima</span><b>✦</b>
+        </div>
+      </div>
+    </div>
+
+    <section class="section-head wrap reveal" id="archivo">
+      <p class="section-kicker"><span>02</span> El archivo</p>
+      <h2 class="display-title">Todas las <em>habilidades</em></h2>
+      <p class="section-sub">
+        Filtra por tipo o por hechicero. Cada tarjeta abre la ficha del personaje
+        y resalta la técnica que estabas consultando.
       </p>
-      <dl class="hero-stats">
-        <div><dt id="stat-tecnicas">0</dt><dd>Técnicas</dd></div>
-        <div><dt id="stat-dominios">0</dt><dd>Dominios</dd></div>
-        <div><dt id="stat-autores">0</dt><dd>Hechiceros</dd></div>
-      </dl>
     </section>
 
     <section class="controls wrap reveal" aria-label="Buscador y filtros">
@@ -88,6 +156,23 @@
   </main>
 
   <footer class="site-footer">
+    <div class="wrap footer-top">
+      <p class="footer-display" aria-hidden="true">Cursed<br />Techniques</p>
+      <div class="footer-cols">
+        <div>
+          <p class="footer-label">Archivo</p>
+          <a href="index.html">Personajes</a>
+          <a href="habilidades.html">Habilidades</a>
+          <a href="#archivo">Filtros</a>
+        </div>
+        <div>
+          <p class="footer-label">Proyecto</p>
+          <a href="https://github.com/valentinahernandezvh8824-del/jujutsu-kaisen" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://jujutsu-kaisen.fandom.com/" target="_blank" rel="noopener">Fuente de arte</a>
+        </div>
+      </div>
+    </div>
+
     <div class="wrap footer-inner">
       <p>Proyecto fan sin fines comerciales. <strong>Jujutsu Kaisen</strong> es obra de Gege Akutami.</p>
       <p class="footer-meta">
