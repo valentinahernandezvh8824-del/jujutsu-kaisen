@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640" role="img" aria-labelledby="t">
+  <title id="t">Arte de energía maldita de Suguru Geto</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0812"/>
+      <stop offset="1" stop-color="#181032"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#7048e8" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#7048e8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vig" cx="50%" cy="45%" r="70%">
+      <stop offset=".45" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#030209" stop-opacity=".92"/>
+    </radialGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="640" fill="url(#bg)"/>
+  <circle cx="378" cy="192" r="300" fill="url(#glow)" opacity=".45" filter="url(#soft)"/>
+
+  <g opacity=".5">
+    <circle cx="320" cy="300" r="190" fill="none" stroke="#7048e8" stroke-width="1" stroke-dasharray="26 18" opacity="0.50" transform="rotate(0 320 300)"/>
+    <circle cx="320" cy="300" r="236" fill="none" stroke="#7048e8" stroke-width="1" stroke-dasharray="2 12" opacity="0.40" transform="rotate(17 320 300)"/>
+    <circle cx="320" cy="300" r="282" fill="none" stroke="#7048e8" stroke-width="1" stroke-dasharray="26 18" opacity="0.30" transform="rotate(34 320 300)"/>
+    <circle cx="320" cy="300" r="328" fill="none" stroke="#7048e8" stroke-width="1" stroke-dasharray="2 12" opacity="0.20" transform="rotate(51 320 300)"/>
+  </g>
+
+  <path d="M-60 700 L700 -60 L760 20 L0 780 Z" fill="#ffffff" opacity=".025"/>
+
+  <text x="320" y="440" text-anchor="middle" font-family="'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP','MS Mincho',serif"
+        font-size="400" font-weight="700" fill="#ffffff" opacity=".08" transform="rotate(-9.7 320 300)">夏</text>
+
+  <g opacity=".95"><path d="M324.0 300.0L324.6 300.6L325.1 301.2L325.5 302.1L325.7 303.0L325.9 304.0L325.8 305.1L325.6 306.2L325.1 307.3L324.5 308.4L323.7 309.5L322.7 310.5L321.5 311.3L320.1 312.1L318.6 312.6L317.0 313.0L315.2 313.1L313.4 313.0L311.6 312.6L309.7 312.0L307.9 311.1L306.2 309.9L304.5 308.5L303.1 306.8L301.8 304.9L300.7 302.8L299.9 300.4L299.4 298.0L299.1 295.4L299.3 292.7L299.7 290.0L300.6 287.3L301.7 284.7L303.3 282.1L305.2 279.8L307.4 277.6L309.9 275.7L312.8 274.1L315.8 272.8L319.1 271.8L322.5 271.3L326.1 271.2L329.7 271.6L333.3 272.4L336.8 273.6L340.2 275.3L343.5 277.5L346.5 280.1L349.2 283.1L351.6 286.5L353.6 290.2L355.1 294.2L356.2 298.4L356.8 302.8L356.8 307.3L356.2 311.9L355.1 316.4L353.4 320.8L351.2 325.0L348.4 329.0L345.1 332.7L341.3 336.0L337.1 338.9L332.5 341.2L327.6 343.0L322.4 344.2L317.0 344.8L311.6 344.8L306.1 344.0L300.7 342.6L295.4 340.5L290.3 337.8L285.6 334.4L281.2 330.4L277.3 325.8L274.0 320.8L271.2 315.3L269.1 309.5L267.7 303.4L267.1 297.1L267.2 290.7L268.1 284.2L269.8 277.9L272.3 271.7L275.5 265.8L279.5 260.3L284.2 255.3L289.4 250.8L295.3 246.9L301.6 243.7L308.4 241.3L315.4 239.8L322.7 239.0L330.1 239.2L337.5 240.2L344.8 242.2L351.8 245.0L358.5 248.7L364.8 253.3L370.6 258.6L375.7 264.6L380.1 271.2L383.7 278.4L386.4 286.1L388.2 294.1L389.1 302.3L388.9 310.7L387.7 319.0L385.5 327.2L382.3 335.2L378.2 342.7L373.1 349.8L367.2 356.3L360.4 362.1L353.0 367.0L344.9 371.1L336.4 374.1L327.4 376.2L318.2 377.1L308.9 377.0L299.6 375.7L290.5 373.3L281.6 369.8L273.2 365.2L265.3 359.6L258.1 353.0L251.7 345.5L246.2 337.3L241.6 328.4L238.2 319.0L235.9 309.1L234.8 299.0L234.9 288.7L236.3 278.4L238.9 268.3L242.7 258.6L247.7 249.3L253.8 240.6L261.0 232.6L269.2 225.5L278.2 219.4L287.9 214.4L298.2 210.6L309.0 208.0L320.1 206.7L331.4 206.8L342.6 208.2L353.6 211.0L364.3 215.1L374.5 220.5L384.1 227.2L392.8 234.9L400.5 243.8L407.2 253.5L412.8 264.1L417.0 275.3L419.9 287.0L421.3 299.0L421.3 311.2L419.9 323.4L416.9 335.4L412.5 347.1L406.8 358.1L399.6 368.5L391.3 378.0L381.8 386.5L371.3 393.8L359.9 399.9L347.8 404.5L335.2 407.7L322.2 409.4L309.1 409.5L295.9 408.0L282.9 404.9L270.4 400.3L258.4 394.1L247.2 386.5L236.9 377.6L227.7 367.5L219.7 356.2L213.1 344.1L208.0 331.1L204.5 317.6L202.6 303.7L202.4 289.5L203.9 275.4L207.1 261.5L211.9 248.0L218.4 235.1L226.5 223.0L235.9 211.9L246.7 201.9L258.7 193.3L271.6 186.2L285.4 180.6L299.9 176.7L314.7 174.6L329.8 174.2L344.9 175.7L359.8 179.0L374.3 184.1L388.1 190.9L401.1 199.3L413.0 209.3L423.7 220.8L432.9 233.4L440.7 247.2L446.7 261.8L451.0 277.1L453.4 293.0L453.9 309.0L452.5 325.1L449.1 341.0L443.8 356.4L436.7 371.1L427.9 385.0L417.3 397.7L405.3 409.1L392.0 419.1L377.4 427.4L362.0 434.0L345.7 438.7L329.0 441.4L312.0 442.0L294.9 440.7L278.1 437.2L261.7 431.8L246.0 424.4L231.3 415.1L217.7 404.1L205.5 391.5L194.8 377.5L185.9 362.2L178.8 345.9L173.7 328.8L170.7 311.1L169.8 293.1L171.1 275.1L174.6 257.3L180.2 239.9L187.8 223.3" fill="none" stroke="#7048e8" stroke-width="4" opacity=".85" stroke-linecap="round"/></g>
+  <rect x="407" y="421" width="6.2" height="21.1" rx="1" fill="#7048e8" opacity="0.23" transform="rotate(252 407 421)"/><rect x="407" y="258" width="7.7" height="26.3" rx="1" fill="#7048e8" opacity="0.45" transform="rotate(151 407 258)"/><rect x="159" y="214" width="6.4" height="21.9" rx="1" fill="#7048e8" opacity="0.27" transform="rotate(265 159 214)"/><rect x="327" y="293" width="7.0" height="23.8" rx="1" fill="#7048e8" opacity="0.32" transform="rotate(237 327 293)"/><rect x="144" y="299" width="3.8" height="12.8" rx="1" fill="#7048e8" opacity="0.21" transform="rotate(270 144 299)"/><rect x="276" y="157" width="3.1" height="10.6" rx="1" fill="#7048e8" opacity="0.20" transform="rotate(161 276 157)"/>
+
+  <rect width="640" height="640" fill="url(#vig)"/>
+  <rect width="640" height="640" filter="url(#grain)" opacity=".06" style="mix-blend-mode:overlay"/>
+</svg>

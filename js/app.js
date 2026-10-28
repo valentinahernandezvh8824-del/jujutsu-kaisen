@@ -144,18 +144,29 @@
     card.style.setProperty("--card-color", p.color);
     card.style.animationDelay = `${Math.min(indice * 35, 350)}ms`;
 
-    const top = crear("div", "card-top");
+    const grado = GRADOS[p.grado];
+
+    // Arte del personaje + sello de grado
+    const media = crear("div", "card-media");
+    const arte = crear("img", "card-art");
+    arte.src = p.arte;
+    arte.alt = "";
+    arte.width = 640;
+    arte.height = 640;
+    arte.loading = "lazy";
+    arte.decoding = "async";
+
     const emblema = crear("span", "card-emblem", p.inicial);
     emblema.setAttribute("aria-hidden", "true");
 
-    const grado = GRADOS[p.grado];
     const badge = crear("span", "badge", grado.label.split(" ").slice(-2).join(" "));
     badge.style.setProperty("--badge-color", grado.color);
 
-    top.append(emblema, badge);
+    media.append(arte, emblema, badge);
 
-    const info = crear("div", "card-info");
-    info.append(crear("h3", "card-name", p.nombre), crear("p", "card-epithet", p.epiteto));
+    // Texto
+    const cuerpo = crear("div", "card-body");
+    cuerpo.append(crear("h3", "card-name", p.nombre), crear("p", "card-epithet", p.epiteto));
 
     const tecnica = crear("p", "card-tech");
     tecnica.append(crear("span", null, "Técnica principal"), document.createTextNode(p.tecnicas[0]));
@@ -166,13 +177,15 @@
     poder.append(document.createTextNode(" poder"));
     pie.append(crear("span", null, p.afiliacion), poder);
 
+    cuerpo.append(tecnica, pie);
+
     // Botón invisible que cubre la tarjeta: una sola parada de tabulación por personaje.
     const abrir = crear("button", "card-open");
     abrir.type = "button";
     abrir.setAttribute("aria-label", `Ver ficha de ${p.nombre}`);
     abrir.addEventListener("click", () => abrirModal(p, abrir));
 
-    card.append(top, info, tecnica, pie, abrir);
+    card.append(media, cuerpo, abrir);
 
     return card;
   }
@@ -194,7 +207,7 @@
     ultimoFoco = origen || document.activeElement;
 
     modal.style.setProperty("--modal-color", p.color);
-    $("#modal-kanji").textContent = p.inicial;
+    $("#modal-art").src = p.arte;
     $("#modal-name").textContent = p.nombre;
     $("#modal-epithet").textContent = p.epiteto;
 

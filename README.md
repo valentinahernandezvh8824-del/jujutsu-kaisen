@@ -23,6 +23,7 @@ También puedes abrirla en local con doble clic en `index.html` (no necesita ser
 ## 🚀 Características
 
 - **18 personajes** de la obra, agrupados por escuela (Tokio, Kioto), independientes, antagonistas y espíritus malditos.
+- **Arte original en SVG** para cada personaje: aura maldita, kanji y sello de su técnica, con carga diferida (`loading="lazy"`).
 - **Buscador instantáneo** que ignora tildes y mayúsculas, y busca en nombre, kanji, clan, epíteto, descripción, técnicas y dominio.
 - **Filtros por afiliación y por grado** (Grado Especial, Grado 1–4, Espíritu Maldito).
 - **Ordenamiento** por relevancia, nombre, poder total o grado.
@@ -45,12 +46,28 @@ jujutsu-kaisen/
 ├── js/
 │   ├── data.js       # Personajes, técnicas y estadísticas
 │   └── app.js        # Búsqueda, filtros, modal, tema y eventos
+├── assets/
+│   └── personajes/   # Arte SVG original de cada personaje
 ├── README.md
 ├── LICENSE
 └── .gitignore
 ```
 
-Para agregar un personaje basta con añadir un objeto al arreglo `PERSONAJES` de `js/data.js`: los filtros, contadores y tarjetas se generan solos.
+Para agregar un personaje basta con añadir un objeto al arreglo `PERSONAJES` de `js/data.js` (incluido su campo `arte`): los filtros, contadores y tarjetas se generan solos.
+
+### 🎨 Arte de los personajes
+
+Las ilustraciones de `assets/personajes/` son **SVG originales** creados para este proyecto: aura de energía maldita, kanji del personaje y un sello geométrico inspirado en su técnica (el infinito de Gojo, los cortes de Sukuna, la proporción de Nanami, la espiral de Geto…).
+
+No se usan imágenes oficiales ni de wikis externas por derechos de autor. Si quieres sustituirlas por tus propias ilustraciones, coloca el archivo en `assets/personajes/` y actualiza el campo `arte` del personaje:
+
+```js
+{
+  id: "gojo",
+  // …
+  arte: "assets/personajes/gojo.svg", // ← aquí tu imagen (jpg, png, webp…)
+}
+```
 
 ---
 

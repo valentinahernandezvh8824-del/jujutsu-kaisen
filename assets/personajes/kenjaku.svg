@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640" role="img" aria-labelledby="t">
+  <title id="t">Arte de energía maldita de Kenjaku</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0812"/>
+      <stop offset="1" stop-color="#16220b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#66a80f" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#66a80f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vig" cx="50%" cy="45%" r="70%">
+      <stop offset=".45" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#030209" stop-opacity=".92"/>
+    </radialGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="640" fill="url(#bg)"/>
+  <circle cx="314" cy="301" r="300" fill="url(#glow)" opacity=".45" filter="url(#soft)"/>
+
+  <g opacity=".5">
+    <circle cx="320" cy="300" r="190" fill="none" stroke="#66a80f" stroke-width="1" stroke-dasharray="26 18" opacity="0.50" transform="rotate(0 320 300)"/>
+    <circle cx="320" cy="300" r="236" fill="none" stroke="#66a80f" stroke-width="1" stroke-dasharray="2 12" opacity="0.40" transform="rotate(17 320 300)"/>
+    <circle cx="320" cy="300" r="282" fill="none" stroke="#66a80f" stroke-width="1" stroke-dasharray="26 18" opacity="0.30" transform="rotate(34 320 300)"/>
+    <circle cx="320" cy="300" r="328" fill="none" stroke="#66a80f" stroke-width="1" stroke-dasharray="2 12" opacity="0.20" transform="rotate(51 320 300)"/>
+  </g>
+
+  <path d="M-60 700 L700 -60 L760 20 L0 780 Z" fill="#ffffff" opacity=".025"/>
+
+  <text x="320" y="440" text-anchor="middle" font-family="'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP','MS Mincho',serif"
+        font-size="400" font-weight="700" fill="#ffffff" opacity=".08" transform="rotate(-5.0 320 300)">羂</text>
+
+  <g opacity=".95">
+      <path d="M333.8 300.0L334.5 302.1L334.5 304.4L333.5 306.8L331.6 309.1L328.7 311.2L325.1 312.9L320.7 314.0L315.8 314.4L310.6 314.1L305.4 313.0L300.6 311.1L296.4 308.4L293.1 305.1L291.0 301.2L290.2 296.9L290.9 292.5L293.3 288.1L297.1 284.1L302.5 280.6L309.0 277.9L316.6 276.1L324.8 275.5L333.3 276.1L341.5 278.0L349.1 281.1L355.7 285.3L360.8 290.5L364.1 296.4L365.3 302.9L364.3 309.5L361.0 315.9L355.4 321.8L347.9 326.9L338.6 330.9L328.0 333.5L316.5 334.6L304.7 333.9L293.2 331.6L282.6 327.5L273.4 321.9L266.1 315.0L261.3 307.2L259.3 298.6L260.1 289.8L264.0 281.2L270.8 273.2L280.3 266.3L292.1 260.8L305.6 257.1L320.3 255.4L335.5 255.8L350.4 258.4L364.2 263.2L376.3 269.9L386.0 278.3L392.7 288.1L396.0 298.7L395.7 309.7L391.7 320.5L383.9 330.6L372.9 339.5L358.9 346.7L342.6 351.8L324.8 354.5L306.3 354.6L287.9 352.0L270.7 346.7L255.4 339.1L243.0 329.3L234.0 317.8L229.0 305.2L228.3 292.1L232.2 279.0L240.4 266.6L252.8 255.6L268.7 246.5L287.5 239.8L308.3 235.9L330.1 235.0L352.0 237.4L372.7 242.8L391.3 251.2L406.8 262.1L418.4 275.1L425.5 289.6L427.5 304.9L424.3 320.3L415.9 335.0L402.7 348.3L385.2 359.5L364.1 368.0L340.5 373.3L315.4 375.2L290.1 373.4L265.7 368.0L243.6 359.2L224.7 347.3L210.2 332.9L200.8 316.7L197.0 299.3L199.1 281.6L207.2 264.6L220.9 248.9L239.7 235.5L262.7 225.0L288.9 217.9L317.1 214.8L345.9 215.7L373.9 220.8L399.8 229.8L422.2 242.4L440.0 258.0L452.2 275.9L458.2 295.2L457.5 315.1L450.1 334.6L436.3 352.7L416.6 368.5L391.9 381.2L363.3 390.2L332.2 394.9L300.0 395.0L268.3 390.6L238.6 381.6L212.5 368.6L191.2 352.0L175.9 332.6L167.4 311.4L166.1 289.4L172.4 267.5L185.9 246.9L206.1 228.6L232.1 213.5L262.8 202.4L296.7 195.9L332.1 194.4L367.5 198.0L401.0 206.6L431.1 219.8L456.1 237.2L474.9 257.8L486.3 280.7L489.9 304.9L485.2 329.1L472.4 352.3L452.1 373.2L425.1 390.8L392.6 404.2L356.2 412.7L317.6 415.9L278.7 413.4L241.2 405.5L207.2 392.3L178.2 374.4L155.7 352.8L140.9 328.3L134.7 302.1L137.4 275.6L149.0 249.9L169.0 226.3" fill="none" stroke="#66a80f" stroke-width="4" opacity=".85"/>
+      <path d="M190 300 L450 300" stroke="#66a80f" stroke-width="1" stroke-dasharray="4 8" opacity=".4"/></g>
+  <rect x="152" y="489" width="9.6" height="32.6" rx="1" fill="#66a80f" opacity="0.32" transform="rotate(166 152 489)"/><rect x="421" y="133" width="9.7" height="32.8" rx="1" fill="#66a80f" opacity="0.41" transform="rotate(63 421 133)"/><rect x="269" y="301" width="8.1" height="27.6" rx="1" fill="#66a80f" opacity="0.52" transform="rotate(86 269 301)"/><rect x="196" y="191" width="6.7" height="22.7" rx="1" fill="#66a80f" opacity="0.28" transform="rotate(64 196 191)"/><rect x="468" y="100" width="6.1" height="20.8" rx="1" fill="#66a80f" opacity="0.22" transform="rotate(124 468 100)"/><rect x="499" y="274" width="3.3" height="11.1" rx="1" fill="#66a80f" opacity="0.34" transform="rotate(16 499 274)"/><rect x="441" y="121" width="7.4" height="25.1" rx="1" fill="#66a80f" opacity="0.41" transform="rotate(348 441 121)"/><rect x="295" y="351" width="5.7" height="19.5" rx="1" fill="#66a80f" opacity="0.15" transform="rotate(73 295 351)"/>
+
+  <rect width="640" height="640" fill="url(#vig)"/>
+  <rect width="640" height="640" filter="url(#grain)" opacity=".06" style="mix-blend-mode:overlay"/>
+</svg>
