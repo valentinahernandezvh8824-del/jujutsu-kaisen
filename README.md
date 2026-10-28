@@ -28,6 +28,7 @@ También puedes abrirla en local con doble clic en `index.html` (no necesita ser
 - **Enlaces cruzados**: cada técnica de una ficha lleva a su tarjeta en habilidades, y desde ahí se vuelve al personaje con `index.html#p-<id>` (abre la ficha directamente).
 - **Animaciones**: aparición al hacer scroll, barra de progreso de lectura, contadores ascendentes, brillo en el título, realce de la habilidad enlazada y respeto a `prefers-reduced-motion`.
 - **Fotos de los personajes** con carga diferida y marcador automático (kanji + color) mientras no haya imagen.
+- **Todas las técnicas a la vista** en cada tarjeta, incluida la expansión de dominio, sin abrir la ficha.
 - **Buscador instantáneo** que ignora tildes y mayúsculas, y busca en nombre, kanji, clan, epíteto, descripción, técnicas y dominio.
 - **Filtros por afiliación y por grado** (Grado Especial, Grado 1–4, Espíritu Maldito).
 - **Ordenamiento** por relevancia, nombre, poder total o grado.

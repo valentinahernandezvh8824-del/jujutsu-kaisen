@@ -202,8 +202,17 @@
     const cuerpo = crear("div", "card-body");
     cuerpo.append(crear("h3", "card-name", p.nombre), crear("p", "card-epithet", p.epiteto));
 
-    const tecnica = crear("p", "card-tech");
-    tecnica.append(crear("span", null, "Técnica principal"), document.createTextNode(p.tecnicas[0]));
+    const tecnicas = crear("div", "card-tech");
+    tecnicas.append(crear("span", null, "Técnicas"));
+
+    const listaTecnicas = crear("ul", "card-tech-list");
+    p.tecnicas.forEach((t) => {
+      listaTecnicas.append(crear("li", "tech-mini", t));
+    });
+    if (p.dominio) {
+      listaTecnicas.append(crear("li", "tech-mini is-domain", `◈ ${p.dominio}`));
+    }
+    tecnicas.append(listaTecnicas);
 
     const pie = crear("div", "card-foot");
     const poder = crear("span", "card-power", `${poderTotal(p)}`);
@@ -211,7 +220,7 @@
     poder.append(document.createTextNode(" poder"));
     pie.append(crear("span", null, p.afiliacion), poder);
 
-    cuerpo.append(tecnica, pie);
+    cuerpo.append(tecnicas, pie);
 
     // Botón invisible que cubre la tarjeta: una sola parada de tabulación por personaje.
     const abrir = crear("button", "card-open");

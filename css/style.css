@@ -653,7 +653,38 @@ select:focus-visible {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-dim);
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.3rem;
+}
+
+.card-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tech-mini {
+  padding: 0.16rem 0.45rem;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: var(--text-soft);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.card:hover .tech-mini {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.tech-mini.is-domain {
+  border-color: color-mix(in srgb, var(--card-color) 45%, var(--border));
+  background: color-mix(in srgb, var(--card-color) 12%, transparent);
+  color: color-mix(in srgb, var(--card-color) 72%, var(--text));
 }
 
 .card-foot {
