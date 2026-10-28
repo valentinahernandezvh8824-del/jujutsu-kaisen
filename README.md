@@ -6,7 +6,7 @@
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](css/style.css)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](js/app.js)
 
-Aplicativo web estático que funciona como una **wiki interactiva de Jujutsu Kaisen**: 18 personajes, sus técnicas malditas, grados, clanes y expansiones de dominio, con buscador, filtros, ordenamiento y fichas detalladas.
+Aplicativo web estático que funciona como una **wiki interactiva de Jujutsu Kaisen**: 28 personajes, sus técnicas malditas, grados, clanes y expansiones de dominio, con buscador, filtros, ordenamiento y fichas detalladas. Incluye una página aparte de **habilidades** a la que se llega desde la ficha de cada personaje.
 
 > Proyecto fan, sin fines comerciales y sin afiliación con Gege Akutami, Shueisha o MAPPA.
 
@@ -15,6 +15,7 @@ Aplicativo web estático que funciona como una **wiki interactiva de Jujutsu Kai
 ## ✨ Demo
 
 🔗 **Sitio publicado:** <https://valentinahernandezvh8824-del.github.io/jujutsu-kaisen/>
+🔗 **Habilidades:** <https://valentinahernandezvh8824-del.github.io/jujutsu-kaisen/habilidades.html>
 
 También puedes abrirla en local con doble clic en `index.html` (no necesita servidor ni instalación).
 
@@ -22,7 +23,10 @@ También puedes abrirla en local con doble clic en `index.html` (no necesita ser
 
 ## 🚀 Características
 
-- **18 personajes** de la obra, agrupados por escuela (Tokio, Kioto), independientes, antagonistas y espíritus malditos.
+- **28 personajes** de la obra, agrupados por escuela (Tokio, Kioto), independientes, antagonistas y espíritus malditos.
+- **Página de habilidades** (`habilidades.html`) con las 125 técnicas y dominios del archivo, buscables y filtrables por tipo y por hechicero.
+- **Enlaces cruzados**: cada técnica de una ficha lleva a su tarjeta en habilidades, y desde ahí se vuelve al personaje con `index.html#p-<id>` (abre la ficha directamente).
+- **Animaciones**: aparición al hacer scroll, barra de progreso de lectura, contadores ascendentes, brillo en el título, realce de la habilidad enlazada y respeto a `prefers-reduced-motion`.
 - **Fotos de los personajes** con carga diferida y marcador automático (kanji + color) mientras no haya imagen.
 - **Buscador instantáneo** que ignora tildes y mayúsculas, y busca en nombre, kanji, clan, epíteto, descripción, técnicas y dominio.
 - **Filtros por afiliación y por grado** (Grado Especial, Grado 1–4, Espíritu Maldito).
@@ -40,17 +44,21 @@ También puedes abrirla en local con doble clic en `index.html` (no necesita ser
 
 ```
 jujutsu-kaisen/
-├── index.html              # Estructura de la página
+├── index.html              # Wiki de personajes
+├── habilidades.html        # Archivo de técnicas y dominios
 ├── css/
-│   └── style.css           # Tema, componentes y responsive
+│   └── style.css           # Tema, componentes y animaciones
 ├── js/
 │   ├── data.js             # Personajes, técnicas y estadísticas
 │   ├── imagenes.js         # Manifest de fotos (lo genera el script)
-│   └── app.js              # Búsqueda, filtros, modal, tema y eventos
+│   ├── ui.js               # Tema, animaciones de scroll y progreso
+│   ├── app.js              # Búsqueda, filtros, modal y eventos
+│   └── habilidades.js      # Listado y filtros de habilidades
 ├── assets/
 │   └── personajes/         # Fotos <id>.jpg / .png / .webp
 ├── tools/
-│   └── descargar-imagenes.ps1
+│   ├── descargar-imagenes.ps1
+│   └── servidor.js         # Servidor local sin dependencias
 ├── README.md
 ├── LICENSE
 └── .gitignore
@@ -111,6 +119,16 @@ const IMAGENES = {
 | Mahito | Espíritus Malditos | Espíritu Maldito |
 | Choso | Espíritus Malditos | Grado Especial |
 | Yuki Tsukumo | Independiente | Grado Especial |
+| Jogo | Espíritus Malditos | Espíritu Maldito |
+| Hanami | Espíritus Malditos | Espíritu Maldito |
+| Dagon | Espíritus Malditos | Espíritu Maldito |
+| Uraume | Antagonista | Grado Especial |
+| Naoya Zenin | Antagonista | Grado 1 |
+| Kinji Hakari | Escuela de Tokio | Grado 1 |
+| Hiromi Higuruma | Escuela de Tokio | Grado 1 |
+| Atsuya Kusakabe | Escuela de Tokio | Grado 1 |
+| Mei Mei | Independiente | Grado 1 |
+| Utahime Iori | Escuela de Kioto | Grado 1 |
 
 ---
 

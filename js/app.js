@@ -35,6 +35,15 @@
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
 
+  // Ancla compartida con habilidades.html (misma lógica allí)
+  const anclaTecnica = (nombre, idPersonaje) =>
+    "t-" +
+    normalizar(nombre)
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "") +
+    "--" +
+    idPersonaje;
+
   const poderTotal = (p) => {
     const s = p.stats;
     return Math.round((s.fuerza + s.velocidad + s.energia + s.tecnica + s.inteligencia) / 5);
@@ -267,14 +276,29 @@
 
     $("#modal-desc").textContent = p.descripcion;
 
-    $("#modal-techs").replaceChildren(
-      ...p.tecnicas.map((t) => crear("li", null, t))
-    );
+    // Cada técnica enlaza a su tarjeta dentro de la página de habilidades
+    const filas = p.tecnicas.map((t) => {
+      const li = crear("li");
+      const enlace = crear("a", "tech-link", t);
+      enlace.href = `habilidades.html#${anclaTecnica(t, p.id)}`;
+      li.append(enlace);
+      return li;
+    });
+
+    const liTodas = crear("li", "tech-all");
+    const enlaceTodas = crear("a", "tech-link tech-all-link", "Ver todas →");
+    enlaceTodas.href = "habilidades.html";
+    liTodas.append(enlaceTodas);
+    filas.push(liTodas);
+
+    $("#modal-techs").replaceChildren(...filas);
 
     const dominioWrap = $("#modal-domain-wrap");
     if (p.dominio) {
       dominioWrap.hidden = false;
-      $("#modal-domain").textContent = p.dominio;
+      const enlaceDominio = crear("a", "domain-link", p.dominio);
+      enlaceDominio.href = `habilidades.html#${anclaTecnica(p.dominio, p.id)}`;
+      $("#modal-domain").replaceChildren(enlaceDominio);
     } else {
       dominioWrap.hidden = true;
     }
@@ -339,20 +363,6 @@
     requestAnimationFrame(paso);
   }
 
-  /* ------------------------- Tema ------------------------- */
-
-  function temaInicial() {
-    const guardado = localStorage.getItem("jjk-tema");
-    if (guardado) return guardado;
-    return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-  }
-
-  function aplicarTema(tema) {
-    document.documentElement.dataset.theme = tema;
-    $("#theme-icon").textContent = tema === "light" ? "☀" : "☾";
-    localStorage.setItem("jjk-tema", tema);
-  }
-
   /* ------------------------- Eventos ------------------------- */
 
   function conectarEventos() {
@@ -371,11 +381,6 @@
     sortSelect.addEventListener("change", (e) => {
       state.orden = e.target.value;
       render();
-    });
-
-    $("#btn-theme").addEventListener("click", () => {
-      const actual = document.documentElement.dataset.theme === "light" ? "dark" : "light";
-      aplicarTema(actual);
     });
 
     $("#btn-random").addEventListener("click", () => {
@@ -419,11 +424,19 @@
   /* ------------------------- Inicio ------------------------- */
 
   function iniciar() {
-    aplicarTema(temaInicial());
+    if (window.UI) UI.iniciar();
+
     construirFiltros();
     conectarEventos();
     render();
     pintarEstadisticas();
+
+    // Permite llegar desde habilidades.html con index.html#p-<id>
+    const hash = decodeURIComponent(location.hash.replace(/^#/, ""));
+    if (hash.startsWith("p-")) {
+      const elegido = PERSONAJES.find((p) => p.id === hash.slice(2));
+      if (elegido) abrirModal(elegido, null);
+    }
   }
 
   if (document.readyState === "loading") {

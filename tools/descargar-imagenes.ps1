@@ -60,7 +60,17 @@ $personajes = @(
     @{ id = "todo";    pagina = "Aoi_Todo" },
     @{ id = "miwa";    pagina = "Kasumi_Miwa" },
     @{ id = "yuki";    pagina = "Yuki_Tsukumo" },
-    @{ id = "kenjaku"; pagina = "Kenjaku" }
+    @{ id = "kenjaku"; pagina = "Kenjaku" },
+    @{ id = "jogo";    pagina = "Jogo" },
+    @{ id = "hanami";  pagina = "Hanami" },
+    @{ id = "dagon";   pagina = "Dagon" },
+    @{ id = "uraume";  pagina = "Uraume" },
+    @{ id = "naoya";   pagina = "Naoya_Zenin" },
+    @{ id = "hakari";  pagina = "Kinji_Hakari" },
+    @{ id = "higuruma"; pagina = "Hiromi_Higuruma" },
+    @{ id = "kusakabe"; pagina = "Atsuya_Kusakabe" },
+    @{ id = "meimei";  pagina = "Mei_Mei" },
+    @{ id = "utahime"; pagina = "Utahime_Iori" }
 )
 
 $cliente = [System.Net.Http.HttpClient]::new()

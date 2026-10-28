@@ -300,5 +300,165 @@ const PERSONAJES = [
     tecnicas: ["Trasplante de cerebro", "Manipulación de Espíritus Malditos", "Dominios sellados", "Ritual de fusión"],
     dominio: null,
     stats: { fuerza: 76, velocidad: 80, energia: 94, tecnica: 99, inteligencia: 100 }
+  },
+  {
+    id: "jogo",
+    nombre: "Jogo",
+    kanji: "漏瑚",
+    epiteto: "La maldición del volcán",
+    afiliacion: "Espíritus Malditos",
+    grado: "maldicion",
+    clan: "—",
+    color: "#e8590c",
+    inicial: "漏",
+    descripcion:
+      "Espíritu maldito de Grado Especial nacido del miedo a la tierra y los volcanes. Tiene un solo ojo y una cabeza con forma de cráter. Desprecia a los humanos y se une al plan de Geto para acabar con la hechicería, aunque su orgullo lo lleva a subestimar a sus enemigos.",
+    tecnicas: ["Llamas malditas", "Insectos de brasa", "Meteoro", "Erupción"],
+    dominio: "Ataúd de la Montaña de Hierro",
+    stats: { fuerza: 82, velocidad: 84, energia: 91, tecnica: 87, inteligencia: 78 }
+  },
+  {
+    id: "hanami",
+    nombre: "Hanami",
+    kanji: "花御",
+    epiteto: "La maldición del bosque",
+    afiliacion: "Espíritus Malditos",
+    grado: "maldicion",
+    clan: "—",
+    color: "#2b8a3e",
+    inicial: "花",
+    descripcion:
+      "Espíritu maldito nacido del miedo a la naturaleza. Su cuerpo es de madera y raíces, y puede absorber energía vital a distancia. Aprecia la vida vegetal y considera que los humanos son una plaga que debe desaparecer para que el planeta sane.",
+    tecnicas: ["Raíces malditas", "Semillas de flor", "Drenaje de vida", "Escudo de madera"],
+    dominio: null,
+    stats: { fuerza: 85, velocidad: 76, energia: 88, tecnica: 84, inteligencia: 80 }
+  },
+  {
+    id: "dagon",
+    nombre: "Dagon",
+    kanji: "陀艮",
+    epiteto: "La maldición del mar",
+    afiliacion: "Espíritus Malditos",
+    grado: "maldicion",
+    clan: "—",
+    color: "#1c7ed6",
+    inicial: "陀",
+    descripcion:
+      "Espíritu maldito de Grado Especial con forma de criatura marina. Invoca shikigami acuáticos y ahoga a sus rivales dentro de su dominio, donde el agua lo cubre todo. Es uno de los tres espíritus que atacan Shibuya junto a Jogo y Hanami.",
+    tecnicas: ["Olas malditas", "Shikigami acuáticos", "Tentáculos", "Marea"],
+    dominio: "Horizonte del Skandha Cautivador",
+    stats: { fuerza: 80, velocidad: 78, energia: 90, tecnica: 85, inteligencia: 76 }
+  },
+  {
+    id: "uraume",
+    nombre: "Uraume",
+    kanji: "裏梅",
+    epiteto: "La mano derecha de Sukuna",
+    afiliacion: "Antagonista",
+    grado: "especial",
+    clan: "—",
+    color: "#74c0fc",
+    inicial: "裏",
+    descripcion:
+      "Hechicero que sirvió a Ryomen Sukuna hace mil años y que reaparece para ayudarlo a recuperar su cuerpo completo. Domina una técnica de hielo capaz de congelar el campo de batalla entero y de conservar alimento durante siglos.",
+    tecnicas: ["Técnica de hielo", "Congelación", "Esculturas de hielo", "Curación inversa"],
+    dominio: null,
+    stats: { fuerza: 78, velocidad: 82, energia: 88, tecnica: 90, inteligencia: 86 }
+  },
+  {
+    id: "naoya",
+    nombre: "Naoya Zenin",
+    kanji: "禪院直哉",
+    epiteto: "El heredero arrogante",
+    afiliacion: "Antagonista",
+    grado: "grado1",
+    clan: "Clan Zenin",
+    color: "#f59f00",
+    inicial: "禪",
+    descripcion:
+      "Primo de Maki y heredero favorito del clan Zenin. Su Técnica de Proyección divide un segundo en 24 fotogramas y le permite moverse a velocidades imposibles trazando trayectorias rectas. Su desprecio hacia las mujeres y hacia Maki lo convierte en uno de los villanos más detestables de la obra.",
+    tecnicas: ["Técnica de Proyección", "Velocidad extrema", "Refuerzo maldito", "Combate cuerpo a cuerpo"],
+    dominio: null,
+    stats: { fuerza: 84, velocidad: 96, energia: 74, tecnica: 82, inteligencia: 80 }
+  },
+  {
+    id: "hakari",
+    nombre: "Kinji Hakari",
+    kanji: "秤金次",
+    epiteto: "El jugador de pachinko",
+    afiliacion: "Escuela de Tokio",
+    grado: "grado1",
+    clan: "—",
+    color: "#e64980",
+    inicial: "秤",
+    descripcion:
+      "Hechicero de Grado 1 suspendido por pelear en torneos clandestinos. Su técnica expande un dominio con forma de máquina de pachinko: si gana la partida, obtiene energía maldita infinita y curación automática durante cuatro minutos y once segundos.",
+    tecnicas: ["Apuesta Mortal Ociosa", "Curación inversa automática", "Energía ilimitada", "Refuerzo maldito"],
+    dominio: "Apuesta Mortal Ociosa",
+    stats: { fuerza: 88, velocidad: 86, energia: 95, tecnica: 94, inteligencia: 84 }
+  },
+  {
+    id: "higuruma",
+    nombre: "Hiromi Higuruma",
+    kanji: "日車寛見",
+    epiteto: "El abogado hechicero",
+    afiliacion: "Escuela de Tokio",
+    grado: "grado1",
+    clan: "—",
+    color: "#868e96",
+    inicial: "日",
+    descripcion:
+      "Abogado penalista que despierta la hechicería durante el Juego del Abismo. Su técnica convierte un juicio en combate: si el veredicto es culpable, la pena se ejecuta de inmediato con su martillo y su espada del juicio.",
+    tecnicas: ["Sentencia Mortal", "Martillo del juez", "Espada del veredicto", "Dominio judicial"],
+    dominio: "Sentencia Mortal",
+    stats: { fuerza: 86, velocidad: 82, energia: 88, tecnica: 95, inteligencia: 97 }
+  },
+  {
+    id: "kusakabe",
+    nombre: "Atsuya Kusakabe",
+    kanji: "日下部篤也",
+    epiteto: "El espadachín veterano",
+    afiliacion: "Escuela de Tokio",
+    grado: "grado1",
+    clan: "—",
+    color: "#4c6ef5",
+    inicial: "日",
+    descripcion:
+      "Profesor de segundo año y veterano de Grado 1. No tiene una técnica hereditaria, pero domina el Estilo Nueva Sombra y el Dominio Simple con una precisión que le permite sobrevivir a enemigos superiores. Prefiere evitar peleas innecesarias.",
+    tecnicas: ["Estilo Nueva Sombra", "Dominio Simple", "Barrera de sombra", "Espada maldita"],
+    dominio: null,
+    stats: { fuerza: 80, velocidad: 84, energia: 78, tecnica: 88, inteligencia: 92 }
+  },
+  {
+    id: "meimei",
+    nombre: "Mei Mei",
+    kanji: "冥冥",
+    epiteto: "La mercenaria de los cuervos",
+    afiliacion: "Independiente",
+    grado: "grado1",
+    clan: "—",
+    color: "#7048e8",
+    inicial: "冥",
+    descripcion:
+      "Hechicera de Grado 1 que trabaja solo por dinero. Controla cuervos con energía maldita y los usa como exploradores o como proyectiles explosivos. Su hermano Ui Ui la acompaña y se encarga de transportarla y protegerla.",
+    tecnicas: ["Control de cuervos", "Cuervos explosivos", "Exploración aérea", "Hacha maldita"],
+    dominio: null,
+    stats: { fuerza: 80, velocidad: 84, energia: 86, tecnica: 90, inteligencia: 91 }
+  },
+  {
+    id: "utahime",
+    nombre: "Utahime Iori",
+    kanji: "庵歌姫",
+    epiteto: "La maestra de Kioto",
+    afiliacion: "Escuela de Kioto",
+    grado: "grado1",
+    clan: "—",
+    color: "#c2255c",
+    inicial: "庵",
+    descripcion:
+      "Profesora del Instituto de Kioto y organizadora del evento de intercambio. Su técnica de canto potencia la energía maldita de sus aliados dentro de un área, lo que la convierte en una apoyo invaluable en batallas de equipo.",
+    tecnicas: ["Canto maldito", "Refuerzo de aliados", "Barrera", "Análisis de técnicas"],
+    dominio: null,
+    stats: { fuerza: 66, velocidad: 72, energia: 80, tecnica: 86, inteligencia: 89 }
   }
 ];
