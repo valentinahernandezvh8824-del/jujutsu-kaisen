@@ -1,5 +1,11 @@
 # Jujutsu Kaisen — Wiki de Hechiceros 呪
 
+[![Sitio en vivo](https://img.shields.io/badge/sitio-en%20vivo-b026ff?style=flat-square)](https://valentinahernandezvh8824-del.github.io/jujutsu-kaisen/)
+[![Licencia MIT](https://img.shields.io/badge/licencia-MIT-22d3ee?style=flat-square)](LICENSE)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](index.html)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](css/style.css)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](js/app.js)
+
 Aplicativo web estático que funciona como una **wiki interactiva de Jujutsu Kaisen**: 18 personajes, sus técnicas malditas, grados, clanes y expansiones de dominio, con buscador, filtros, ordenamiento y fichas detalladas.
 
 > Proyecto fan, sin fines comerciales y sin afiliación con Gege Akutami, Shueisha o MAPPA.
@@ -8,11 +14,7 @@ Aplicativo web estático que funciona como una **wiki interactiva de Jujutsu Kai
 
 ## ✨ Demo
 
-Cuando publiques el repositorio con GitHub Pages, la app quedará disponible en:
-
-```
-https://valentinahernandezvh8824-del.github.io/jujutsu-kaisen/
-```
+🔗 **Sitio publicado:** <https://valentinahernandezvh8824-del.github.io/jujutsu-kaisen/>
 
 También puedes abrirla en local con doble clic en `index.html` (no necesita servidor ni instalación).
 
