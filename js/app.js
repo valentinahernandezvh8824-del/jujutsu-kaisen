@@ -87,11 +87,15 @@
       grupoGrado.appendChild(chip);
     });
 
-    $('[data-afiliacion="todos"]', grupoAfil).addEventListener("click", () => {
-      state.afiliacion = "todos";
-      sincronizarChips(grupoAfil, "afiliacion", "todos");
-      render();
-    });
+    // Chip "Todos" que ya viene en el HTML
+    const chipTodos = $('[data-afiliacion="todos"]', grupoAfil);
+    if (chipTodos) {
+      chipTodos.addEventListener("click", () => {
+        state.afiliacion = "todos";
+        sincronizarChips(grupoAfil, "afiliacion", "todos");
+        render();
+      });
+    }
 
     const chipTodosGrado = crear("button", "chip is-active", "Cualquier grado");
     chipTodosGrado.type = "button";
