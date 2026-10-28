@@ -106,8 +106,9 @@
     <div class="modal-backdrop" data-close></div>
     <article class="modal-card" role="document">
       <button class="modal-close" id="modal-close" type="button" aria-label="Cerrar ficha">✕</button>
-      <div class="modal-hero">
-        <img class="modal-art" id="modal-art" alt="" width="640" height="360" />
+      <div class="modal-hero" id="modal-hero">
+        <img class="modal-art" id="modal-art" alt="" width="640" height="360" hidden />
+        <span class="modal-watermark" id="modal-watermark" aria-hidden="true"></span>
       </div>
 
       <div class="modal-head">
@@ -135,6 +136,7 @@
   </div>
 
   <script src="js/data.js"></script>
+  <script src="js/imagenes.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

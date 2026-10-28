@@ -42,6 +42,13 @@
 
   const ordenGrado = { especial: 0, grado1: 1, grado2: 2, grado3: 3, grado4: 4, maldicion: 5 };
 
+  // Foto del personaje: campo manual `foto` o lo que haya descargado el script.
+  const fotoDe = (p) => {
+    if (p.foto) return p.foto;
+    if (typeof IMAGENES !== "undefined" && IMAGENES[p.id]) return IMAGENES[p.id];
+    return null;
+  };
+
   const crear = (etiqueta, clase, texto) => {
     const el = document.createElement(etiqueta);
     if (clase) el.className = clase;
@@ -146,15 +153,29 @@
 
     const grado = GRADOS[p.grado];
 
-    // Arte del personaje + sello de grado
+    // Foto del personaje + sello de grado
     const media = crear("div", "card-media");
-    const arte = crear("img", "card-art");
-    arte.src = p.arte;
-    arte.alt = "";
-    arte.width = 640;
-    arte.height = 640;
-    arte.loading = "lazy";
-    arte.decoding = "async";
+    const foto = fotoDe(p);
+
+    if (foto) {
+      const imagen = crear("img", "card-art");
+      imagen.src = foto;
+      imagen.alt = "";
+      imagen.width = 640;
+      imagen.height = 640;
+      imagen.loading = "lazy";
+      imagen.decoding = "async";
+      imagen.addEventListener("error", () => {
+        imagen.remove();
+        media.classList.add("is-placeholder");
+      });
+      media.append(imagen);
+    } else {
+      media.classList.add("is-placeholder");
+    }
+
+    const marca = crear("span", "card-watermark", p.inicial);
+    marca.setAttribute("aria-hidden", "true");
 
     const emblema = crear("span", "card-emblem", p.inicial);
     emblema.setAttribute("aria-hidden", "true");
@@ -162,7 +183,7 @@
     const badge = crear("span", "badge", grado.label.split(" ").slice(-2).join(" "));
     badge.style.setProperty("--badge-color", grado.color);
 
-    media.append(arte, emblema, badge);
+    media.append(marca, emblema, badge);
 
     // Texto
     const cuerpo = crear("div", "card-body");
@@ -207,7 +228,27 @@
     ultimoFoco = origen || document.activeElement;
 
     modal.style.setProperty("--modal-color", p.color);
-    $("#modal-art").src = p.arte;
+
+    const hero = $("#modal-hero");
+    const imagen = $("#modal-art");
+    const foto = fotoDe(p);
+
+    $("#modal-watermark").textContent = p.inicial;
+
+    if (foto) {
+      imagen.hidden = false;
+      imagen.src = foto;
+      hero.classList.remove("is-placeholder");
+      imagen.onerror = () => {
+        imagen.hidden = true;
+        hero.classList.add("is-placeholder");
+      };
+    } else {
+      imagen.hidden = true;
+      imagen.removeAttribute("src");
+      hero.classList.add("is-placeholder");
+    }
+
     $("#modal-name").textContent = p.nombre;
     $("#modal-epithet").textContent = p.epiteto;
 
